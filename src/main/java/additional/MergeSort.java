@@ -2,6 +2,8 @@ package additional;
 
 import linkedlist.MergeTwoLists;
 
+//find mid, sort left and right half and call merge.
+//In merge, run the usual merge loop
 public class MergeSort {
 
     public static void main(String[] args) {

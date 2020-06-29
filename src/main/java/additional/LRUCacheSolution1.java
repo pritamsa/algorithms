@@ -11,12 +11,7 @@ public class LRUCacheSolution1 extends LinkedHashMap<Integer, Integer> {
     public LRUCacheSolution1(int capacity) {
         super(capacity, 0.75F, true);
         this.capacity = capacity;
-        HashSet<Integer> set = new HashSet<>();
-        Iterator<Integer> iter = set.iterator();
 
-        while (iter.hasNext()) {
-
-        }
     }
 
     public int get(int key) {
@@ -32,4 +27,5 @@ public class LRUCacheSolution1 extends LinkedHashMap<Integer, Integer> {
         return size() > capacity;
     }
 }
+
 

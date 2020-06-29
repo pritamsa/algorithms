@@ -24,9 +24,6 @@ class CacheEntryComp implements Comparator<CacheEntry> {
 }
 public class LRUCache {
 
-
-
-
     PriorityQueue<CacheEntry> minHeap;
     HashMap<Integer, CacheEntry> map;
     int capacity;

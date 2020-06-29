@@ -1,7 +1,7 @@
 package additional;
 
-import java.util.Stack;
-
+//At a party there is one celebrity. Your job is to find the celeb or report of there is no celeb.
+//A celebrity is a person who knows no one in the part but everyone at the party knows the celebrity.
 public class FindCelebrity {
 
     public static void main(String[] args) {

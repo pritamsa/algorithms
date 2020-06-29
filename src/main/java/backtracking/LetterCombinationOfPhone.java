@@ -35,7 +35,7 @@ public class LetterCombinationOfPhone {
         int num = (int)digits.charAt(curr) - '0';
         String val = map.get(num);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < val.length(); i++) {
 
             builder.append(val.charAt(i));
             getCombinations(curr+1, builder, digits, lst);

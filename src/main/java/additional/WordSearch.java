@@ -8,53 +8,110 @@ public class WordSearch {
     private List<String> lst = new ArrayList<>();
 
     public static void main(String[] args) {
-        char[][] matrix = {{'o','a','a','n'}, {'e','t','a','e'}, {'i','h','k','r'}, {'i','f','l','v'}};
+        char[][] matrix = {{'A','B','C','E'},
+                {'S','F','C','S'},
+                {'A','D','E','E'}};
 
         String[] words = {"oath","pea","eat","rain"};
-        List<String> ls = (new WordSearch()).findWords(matrix, words);
+        boolean ls = (new WordSearch()).exist(matrix, "SEE");
 
     }
-    public List<String> findWords(char[][] board, String[] words) {
 
-        Trie trie = new Trie();
-        TrieNode root = new TrieNode();
+    public  boolean exist(char[][] board, String word) {
         boolean[][] visited = new boolean[board.length][board[0].length];
-
-        for (int i = 0; i < words.length; i++) {
-            trie.insert(words[i], root);
-        }
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                dfs(visited, board, i, j, "", trie, root);
+        boolean ret = false;
+        for(int i = 0; i < board.length; i++){
+            for (int j = 0; j < board[i].length; j++) {
+                ret = ret || dfs(board, visited, word, "", i, j);
             }
+
         }
-        return lst;
+        return ret;
     }
 
-    private void dfs(boolean[][] visited, char[][] board, int x, int y, String str, Trie trie, TrieNode root) {
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) return;
-        if(visited[x][y]) return;
 
-        str += board[x][y];
-        if (!trie.startsWith(str,root)) {
-            return;
+    private  boolean dfs(char[][] board, boolean[][] visited, String word, String currWord, int x, int y) {
+
+        if(x < 0 || y < 0 || x >= board.length) {
+            return false;
         }
+        if(y >= board[x].length) {
+            return false;
+        }
+        if (visited[x][y]) return false;
 
-        if (trie.find(str, root)) {
-            lst.add(str);
+        currWord += board[x][y];
+
+        if(!word.startsWith(currWord)) {
+            return false;
+        }
+        if(word.compareToIgnoreCase(currWord) == 0) {
+            return true;
         }
         visited[x][y] = true;
 
-        dfs(visited, board, x+1, y, str, trie, root);
-        dfs(visited, board, x-1, y, str, trie, root);
-        dfs(visited, board, x, y+1, str, trie, root);
-        dfs(visited, board, x, y-1, str, trie, root);
+        boolean top = false;
+        boolean bottom = false;
+        boolean right = false;
+        boolean left = false;
+
+
+        bottom = dfs(board, visited, word, currWord, x+1, y);
+
+        top = dfs(board, visited, word, currWord, x-1, y);
+
+
+        right = dfs(board, visited, word, currWord, x, y+1);
+
+        left = dfs(board, visited, word, currWord, x, y-1);
+
 
         visited[x][y] = false;
-
+        return left || right || top || bottom;
 
     }
+
+//    public List<String> findWords(char[][] board, String[] words) {
+//
+//        Trie trie = new Trie();
+//        TrieNode root = new TrieNode();
+//        boolean[][] visited = new boolean[board.length][board[0].length];
+//
+//        for (int i = 0; i < words.length; i++) {
+//            trie.insert(words[i], root);
+//        }
+//
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board[0].length; j++) {
+//                dfs(visited, board, i, j, "", trie, root);
+//            }
+//        }
+//        return lst;
+//    }
+//
+//    private void dfs(boolean[][] visited, char[][] board, int x, int y, String str, Trie trie, TrieNode root) {
+//        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) return;
+//        if(visited[x][y]) return;
+//
+//        str += board[x][y];
+//        if (!trie.startsWith(str,root)) {
+//            return;
+//        }
+//
+//        if (trie.find(str, root)) {
+//            lst.add(str);
+//        }
+//        visited[x][y] = true;
+//
+//        dfs(visited, board, x+1, y, str, trie, root);
+//        dfs(visited, board, x-1, y, str, trie, root);
+//        dfs(visited, board, x, y+1, str, trie, root);
+//        dfs(visited, board, x, y-1, str, trie, root);
+//
+//        visited[x][y] = false;
+//
+//
+//    }
 
 }
 

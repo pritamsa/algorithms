@@ -4,7 +4,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
 
-        int[] arr = {8,4,7,3,1,2,6,5,10, 15};
+        int[] arr = {8,4,7,3,1,2,6,15,10,7};
 
         quickSort(arr);
         //Collections.so
