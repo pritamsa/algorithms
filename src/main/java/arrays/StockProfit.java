@@ -8,6 +8,7 @@ public class StockProfit {
         StringBuffer sb = new StringBuffer();
 
 
+
         for (int i = 0; i < prices.length; i++) {
             profit = Math.max(profit, prices[i] - min);
             min = Math.min(min, prices[i]);

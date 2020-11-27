@@ -16,6 +16,7 @@ public class FindMedianTwoSortedUnEqualLenArrays {
             int tmp = m; m = n; n = tmp;
         }
         int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
+
         while (iMin <= iMax) {
             int i = (iMin + iMax) / 2;
             int j = halfLen - i;

@@ -31,6 +31,71 @@ public class BackspaceStrCompare {
         System.out.println(backSpaceStrComp("", "#"));
     }
 
+  public boolean backspaceCompare(String S, String T) {
+
+    int c1 = 0;
+    int c2 = 0;
+
+    S = S.trim();
+    T = T.trim();
+    int i = S.length()-1;
+    int j = T.length()-1;
+
+    while (i >= 0 && j >= 0 ) {
+      if (c1 > 0 || c2 > 0) {
+        if (S.charAt(i) != '#' && c1 > 0) {
+          i--;
+          c1--;
+        }
+        if(T.charAt(j) != '#' && c2 > 0) {
+          j--;
+          c2--;
+        }
+
+      } else if (S.charAt(i) == T.charAt(j)) {
+        i--;
+        j--;
+      } else if (S.charAt(i) == '#' || T.charAt(j) == '#') {
+        if (S.charAt(i) == '#') {
+          i--;
+          c1++;
+        }
+        if (T.charAt(j) == '#') {
+          j--;
+          c2++;
+        }
+      } else if (S.charAt(i) != T.charAt(j)) {
+        return false;
+      }
+
+    }
+
+    while (i >= 0) {
+      if (c1 > 0 && S.charAt(i) != '#') {
+        i--;
+        c1--;
+      } else if (S.charAt(i) == '#') {
+        i--;
+        c1++;
+      } else if (c1 == 0 && S.charAt(i) != '#') {
+        return false;
+      }
+    }
+
+    while (j >= 0) {
+      if (c2 > 0 && T.charAt(j) != '#') {
+        j--;
+        c2--;
+      } else if (T.charAt(j) == '#') {
+        j--;
+        c2++;
+      } else if (c2 == 0 && T.charAt(j) != '#') {
+        return false;
+      }
+    }
+    return true;
+  }
+
     public static boolean backSpaceStrComp(String str1, String str2) {
         int c = 0;
         int c1 = 0;

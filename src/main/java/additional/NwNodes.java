@@ -78,6 +78,7 @@ public class NwNodes {
                 if ( v != j) {
                     dist[j] = matrix[v][j] != Integer.MAX_VALUE ?
                             Math.min(dist[j], matrix[v][j] + dist[v]) : dist[j];
+
                     if (min > dist[j] && !set.contains(j)) {
                         min = dist[j];
                         minIdx = j;
